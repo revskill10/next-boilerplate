@@ -1,10 +1,12 @@
 {
-  "name": "express-passport-google-oauth-exmple",
+  "name": "ssms",
   "version": "1.0.0",
   "description": "example of Express + Google OAuth app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,22 @@
   },
   "homepage": "https://github.com/bognix/express-passport-google-oauth-exmple#readme",
   "dependencies": {
+    "@zeit/next-css": "^1.0.0",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-alpha.2",
+    "cors": "^2.8.4",
     "express": "^4.14.1",
+    "express-hbs": "^1.0.4",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.3.0",
+    "next": "^7.0.0",
+    "next-cookies": "^1.0.2",
+    "node-fetch": "^2.2.0",
     "passport": "^0.3.2",
-    "passport-google-oauth": "^1.0.0"
+    "passport-google-oauth": "^1.0.0",
+    "passport-google-oauth2": "^0.1.6",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "unfetch": "^4.0.1"
   }
 }
