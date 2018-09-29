@@ -5,7 +5,7 @@ const allowedRoles = "x-hasura-allowed-roles"
 const defaultRoleKey = "x-hasura-default-role"
 const userId = 'x-hasura-user-id'
 const orgId = 'x-hasura-org-id'
-const defaultRole = 'user'
+const defaultRole = 'User'
 const nameKey = 'name'
 
 function mkJwtVariables(infoData){
@@ -34,7 +34,7 @@ function createJwtToken({roles, org_id, user_id, user_name}){
   const data = {
     'name': user_name,
     [namespace]: {
-      "x-hasura-allowed-roles": roles,
+      "x-hasura-allowed-roles": ['User', ...roles],
       "x-hasura-default-role": defaultRole,
       'x-hasura-user-id': user_id,
       'x-hasura-org-id': org_id,
