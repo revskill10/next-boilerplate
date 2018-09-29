@@ -1,4 +1,5 @@
 import AuthLink from './authLink.js';
+import Intro from '../mdx/intro.mdx';
 
 const IndexComponent = ({token}) =>
   <div>
@@ -18,10 +19,10 @@ const IndexComponent = ({token}) =>
         <div className="clearfix">
         </div>
         <div className="lead-title">Simple School Management System
+        {token}
         </div>
-        <div className="sub-lead-title">All text blocks could be edited easily with double clicking on it. You can create new text blocks with the command from the left panel
-          <div>bmn
-          </div>
+        <div className="sub-lead-title">
+          <Intro />
         </div>
         <div className="lead-btn">Hover me
         </div>
