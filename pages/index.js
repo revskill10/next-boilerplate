@@ -23,10 +23,6 @@ const styles = theme => ({
 });
 
 class Index extends React.Component {
-  static async getInitialProps(ctx) {
-    return cookies(ctx);
-  }
-
   state = {
     open: false,
   };
@@ -82,7 +78,6 @@ class Index extends React.Component {
 
 Index.propTypes = {
   classes: PropTypes.object.isRequired,
-  token: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
 };
 

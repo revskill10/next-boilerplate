@@ -8,8 +8,9 @@ const registerUserQuery = require('./graphql/registerUser');
 const mkGetInfoVariables = require('./variables/getInfo');
 const getInfoQuery = require('./graphql/getInfo');
 const {mkJwtVariables, mkNullJwtVariables, createJwtToken} = require('./createJwtToken');
-function getDomain(req){
-  return req.get('host');
+function getDomain(_req){
+  //return req.get('host');
+  return process.env.DOMAIN;
 }
 
 module.exports = function(passport) {

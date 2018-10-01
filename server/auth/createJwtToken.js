@@ -20,10 +20,9 @@ function mkJwtVariables(infoData){
 }
 
 function mkNullJwtVariables(user){
-  console.log(user);
   const jwtVariables = {
     roles: ["User"],
-    org_id: "",
+    org_id: '',
     user_id: user.id,
     user_name: user.displayName,
   }

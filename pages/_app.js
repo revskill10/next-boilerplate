@@ -6,8 +6,10 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from '../shared/getPageContext';
+import { ApolloProvider } from 'react-apollo'
+import withApolloClient from '../hocs/withApolloClient'
 
-export default class MyApp extends App {
+class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
@@ -22,7 +24,7 @@ export default class MyApp extends App {
   }
   
   render () {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, apolloClient } = this.props
     const { i18n, initialI18nStore, initialLanguage } = pageProps || {}
 
     return (
@@ -44,7 +46,9 @@ export default class MyApp extends App {
             >
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
-              <Component pageContext={this.pageContext} {...pageProps} />
+              <ApolloProvider client={apolloClient}>
+                <Component pageContext={this.pageContext} {...pageProps} />
+              </ApolloProvider>
             </MuiThemeProvider>
           </JssProvider>
         </I18nextProvider>
@@ -52,3 +56,5 @@ export default class MyApp extends App {
     )
   }
 }
+
+export default withApolloClient(MyApp)
