@@ -10,7 +10,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
-import cookies from 'next-cookies';
 import { withI18next } from '../hocs/withI18next'
 import LanguageSwitch from '../components/languageSwitch';
 
@@ -63,7 +62,7 @@ class Index extends React.Component {
           example project
         </Typography>
         <Typography gutterBottom>
-          <Link href="/about">
+          <Link href="/about" prefetch>
             <a>Go to the about page</a>
           </Link>
         </Typography>

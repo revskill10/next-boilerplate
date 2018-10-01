@@ -1,0 +1,13 @@
+query OrganizationListQuery {
+  organizations{
+    domain
+    id
+  }
+}
+
+subscription OrganizationListSubscription {
+  organizations{
+    domain
+    id
+  }
+}

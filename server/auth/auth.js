@@ -9,7 +9,6 @@ const mkGetInfoVariables = require('./variables/getInfo');
 const getInfoQuery = require('./graphql/getInfo');
 const {mkJwtVariables, mkNullJwtVariables, createJwtToken} = require('./createJwtToken');
 function getDomain(_req){
-  //return req.get('host');
   return process.env.DOMAIN;
 }
 
@@ -28,6 +27,7 @@ module.exports = function(passport) {
     },
     async function(req, _accessToken, _refreshToken, profile, done) {      
       const domain = getDomain(req);
+      console.log(domain);
 
       const findUser = await api(mkQueryObject(
         findUserQuery,

@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
 import getPageContext from '../shared/getPageContext';
 import { ApolloProvider } from 'react-apollo'
-import withApolloClient from '../hocs/withApolloClient'
+import withApollo from '../hocs/withApollo'
 
 class MyApp extends App {
   constructor(props) {
@@ -29,6 +29,7 @@ class MyApp extends App {
 
     return (
       <Container>
+        <ApolloProvider client={apolloClient}>
         <I18nextProvider
           i18n={i18n || initialI18nInstance}
           initialI18nStore={initialI18nStore}
@@ -46,15 +47,14 @@ class MyApp extends App {
             >
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
-              <ApolloProvider client={apolloClient}>
-                <Component pageContext={this.pageContext} {...pageProps} />
-              </ApolloProvider>
+              <Component pageContext={this.pageContext} {...pageProps} />
             </MuiThemeProvider>
           </JssProvider>
         </I18nextProvider>
+        </ApolloProvider>
       </Container>
     )
   }
 }
 
-export default withApolloClient(MyApp)
+export default withApollo(MyApp)
