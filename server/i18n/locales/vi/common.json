@@ -1,4 +1,6 @@
 {
   "test": "Thử nghiệm i18next.",
-  "about_page": "Về chúng tôi"
+  "about_page": "Về chúng tôi",
+  "home_menu": "Trang chủ",
+  "about_menu": "Giới thiệu"
 }

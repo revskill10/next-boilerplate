@@ -1,4 +1,6 @@
 {
   "test": "This example integrates react-i18next for simple internationalization.",
-  "about_page": "About"  
+  "about_page": "About",
+  "home_menu": "Home",
+  "about_menu": "About Us"
 }

@@ -8,7 +8,10 @@
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "analyze": "BUNDLE_ANALYZE=both next build",
+    "analyze:server": "BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "BUNDLE_ANALYZE=browser next build"
   },
   "repository": {
     "type": "git",
@@ -29,6 +32,7 @@
     "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^3.0.1",
     "@mdx-js/mdx": "^0.15.2",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.0",
     "@zeit/next-mdx": "^1.2.0",
     "apollo-boost": "^0.1.16",
@@ -47,6 +51,7 @@
     "dotenv": "^6.0.0",
     "esm": "^3.0.84",
     "express": "^4.14.1",
+    "faker": "^4.1.0",
     "graphql-tag": "^2.9.2",
     "graphqurl": "^0.3.2",
     "i18next": "^11.9.0",

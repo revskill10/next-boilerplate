@@ -3,9 +3,10 @@ import LiveComponent from '../hocs/liveComponent'
 import {OrganizationListQuery, OrganizationListSubscription} from '../graphql/organizations.gql'
 import Helmet from 'react-helmet'
 import { withI18next } from '../hocs/withI18next'
+import Layout from '../components/layout'
 
 const Page = ({t, titleKey}) =>
-  <>
+  <Layout>
     <Helmet
       title={t(titleKey)}
       meta={[{ property: 'og:title', content: t(titleKey) }]}
@@ -16,7 +17,7 @@ const Page = ({t, titleKey}) =>
       >
       {OrganizationsList}
     </LiveComponent>
-  </>
+  </Layout>
   
 
 Page.getInitialProps = async ({ req }) => {

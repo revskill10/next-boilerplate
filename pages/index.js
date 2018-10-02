@@ -12,6 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 import { withI18next } from '../hocs/withI18next'
 import LanguageSwitch from '../components/languageSwitch';
+import Layout from '../components/layout'
 
 
 const styles = theme => ({
@@ -39,13 +40,15 @@ class Index extends React.Component {
   };
 
   render() {
-    const { classes, t } = this.props;
+    const { classes, t, name } = this.props;
     const { open } = this.state;
 
     return (
-      <div className={classes.root}>
+      <Layout>
+        <div className={classes.root}>
         <Dialog open={open} onClose={this.handleClose}>
           <DialogTitle>{t('test')}</DialogTitle>
+          <p>Welcome, {name}</p>
           <DialogContent>
             <DialogContentText>1-2-3-4-5</DialogContentText>
           </DialogContent>
@@ -71,13 +74,27 @@ class Index extends React.Component {
           Super Secret Password
         </Button>
       </div>
+      </Layout>
     );
   }
+}
+
+Index.getInitialProps = async ({req}) => {
+  if (req) {
+    // Runs only in the server
+    const faker = require('faker')
+    const name = faker.name.findName()
+    return { name }
+  }
+
+  // Runs only in the client
+  return { name: 'Arunoda' }
 }
 
 Index.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default withI18next(['common'])(withStyles(styles)(Index));
