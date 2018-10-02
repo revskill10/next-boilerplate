@@ -23,6 +23,7 @@ const Page = ({t, titleKey}) =>
 Page.getInitialProps = async ({ req }) => {
   if (req) {
     Helmet.renderStatic()
+    return { titleKey: 'about_page' }
   }
   return { titleKey: 'about_page' }
 }

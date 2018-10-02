@@ -8,12 +8,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { onError } from 'apollo-link-error';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 
-
-const GRAPHQL_URL2=`https://tptraodoi.herokuapp.com/v1alpha1/graphql`
-const WS_URL2=`wss://tptraodoi.herokuapp.com/v1alpha1/graphql`
-
-const GRAPHQL_URL=`https://api-ojqcevokom.now.sh/graphql`
-const WS_URL=`wss://api-ojqcevokom.now.sh/graphql`
+const GRAPHQL_URL=`https://api.ihs.edu.vn/graphql`
+const WS_URL=`wss://api.ihs.edu.vn/graphql`
 
 let apolloClient = null
 
