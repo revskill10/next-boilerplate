@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 import { withI18next } from '../hocs/withI18next'
-import LanguageSwitch from '../components/languageSwitch';
 import Layout from '../components/layout'
 
 
@@ -23,6 +22,18 @@ const styles = theme => ({
 });
 
 class Index extends React.Component {
+  static async getInitialProps({req}) {
+    if (req) {
+      // Runs only in the server
+      const faker = require('faker')
+      const name = faker.name.findName()
+      return { name }
+    }
+  
+    // Runs only in the client
+    return { name: 'Arunoda' }
+  }
+
   state = {
     open: false,
   };
@@ -44,7 +55,7 @@ class Index extends React.Component {
     const { open } = this.state;
 
     return (
-      <Layout>
+      <Layout t={t}>
         <div className={classes.root}>
         <Dialog open={open} onClose={this.handleClose}>
           <DialogTitle>{t('test')}</DialogTitle>
@@ -69,7 +80,6 @@ class Index extends React.Component {
             <a>Go to the about page</a>
           </Link>
         </Typography>
-        <LanguageSwitch />
         <Button variant="contained" color="secondary" onClick={this.handleClick}>
           Super Secret Password
         </Button>
@@ -79,22 +89,5 @@ class Index extends React.Component {
   }
 }
 
-Index.getInitialProps = async ({req}) => {
-  if (req) {
-    // Runs only in the server
-    const faker = require('faker')
-    const name = faker.name.findName()
-    return { name }
-  }
-
-  // Runs only in the client
-  return { name: 'Arunoda' }
-}
-
-Index.propTypes = {
-  classes: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired
-};
 
 export default withI18next(['common'])(withStyles(styles)(Index));
