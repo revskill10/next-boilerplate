@@ -10,18 +10,18 @@ import { ApolloProvider } from 'react-apollo'
 import withApollo from '../hocs/withApollo'
 import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
+import i18n from '../shared/i18n'
 
 const TIMEOUT = 400
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
-    let pageProps = {}
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
 
-    return { pageProps }
+    const i18nInitialProps = ctx.req ? i18n.getInitialProps(ctx.req, 'common') : {};
+
+    return { pageProps, i18nInitialProps }
   }
 
   constructor(props) {
@@ -38,47 +38,48 @@ class MyApp extends App {
   }
   
   render () {
-    const { Component, pageProps, apolloClient } = this.props
-    const { i18n, initialI18nStore, initialLanguage } = pageProps || {}
+    const { Component, pageProps, apolloClient, i18nInitialProps } = this.props
+    const { i18n, initialI18nStore, initialLanguage } = i18nInitialProps
 
     return (
       <Container>
-        <I18nextProvider
-          i18n={i18n || initialI18nInstance}
-          initialI18nStore={initialI18nStore}
-          initialLanguage={initialLanguage}
-        >
-          <PageTransition
-            timeout={TIMEOUT}
-            classNames='page-transition'
-            loadingComponent={<Loader />}
-            loadingDelay={500}
-            loadingTimeout={{
-              enter: TIMEOUT,
-              exit: 0
-            }}
-            loadingClassNames='loading-indicator'
+        <ApolloProvider client={apolloClient}>
+          <I18nextProvider
+            i18n={i18n || initialI18nInstance}
+            initialI18nStore={initialI18nStore}
+            initialLanguage={initialLanguage}
           >
-            <JssProvider
-              registry={this.pageContext.sheetsRegistry}
-              generateClassName={this.pageContext.generateClassName}
+            <PageTransition
+              timeout={TIMEOUT}
+              classNames='page-transition'
+              loadingComponent={<Loader />}
+              loadingDelay={500}
+              loadingTimeout={{
+                enter: TIMEOUT,
+                exit: 0
+              }}
+              loadingClassNames='loading-indicator'
             >
-              {/* MuiThemeProvider makes the theme available down the React
-                  tree thanks to React context. */}
-                <MuiThemeProvider
-                  theme={this.pageContext.theme}
-                  sheetsManager={this.pageContext.sheetsManager}
-                >
-                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                  <CssBaseline />
-                  <ApolloProvider client={apolloClient}>
-                    <Component pageContext={this.pageContext} {...pageProps} />
-                  </ApolloProvider>
-                </MuiThemeProvider>
-              </JssProvider>
-            </PageTransition>
-          </I18nextProvider>
-        
+              <JssProvider
+                registry={this.pageContext.sheetsRegistry}
+                generateClassName={this.pageContext.generateClassName}
+              >
+                {/* MuiThemeProvider makes the theme available down the React
+                    tree thanks to React context. */}
+                  <MuiThemeProvider
+                    theme={this.pageContext.theme}
+                    sheetsManager={this.pageContext.sheetsManager}
+                  >
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline />
+                    
+                      <Component pageContext={this.pageContext} {...pageProps} />
+                    
+                  </MuiThemeProvider>
+                </JssProvider>
+              </PageTransition>
+            </I18nextProvider>
+          </ApolloProvider>
         <style jsx global>{`
           .page-transition-enter {
             opacity: 0;

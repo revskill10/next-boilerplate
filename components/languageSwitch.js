@@ -7,7 +7,7 @@ import i18n from '../shared/i18n'
 const LanguageSwitch = ({ router }) => (
   <ul>
     <li>
-      <Link href={`${router.pathname}`}>
+      <Link href={`${router.pathname}?lng=en`}>
         <a onClick={() => i18n.changeLanguage('en')}>en</a>
       </Link>
     </li>
