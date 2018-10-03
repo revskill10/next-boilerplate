@@ -1,5 +1,5 @@
 import LanguageSwitch from '../components/languageSwitch';
-import Nav from './nav'
+import Nav from './appBar'
 
 const Layout = ({ children, t }) => (
   <div>
@@ -10,7 +10,8 @@ const Layout = ({ children, t }) => (
     { children }
 
     <footer>
-      {'I`m here to stay'}
+      {t('choose_language')}
+      <br />
       <LanguageSwitch />
     </footer>
   </div>

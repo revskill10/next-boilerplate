@@ -2,5 +2,6 @@
   "test": "Thử nghiệm i18next.",
   "about_page": "Về chúng tôi",
   "home_menu": "Trang chủ",
-  "about_menu": "Giới thiệu"
+  "about_menu": "Giới thiệu",
+  "choose_language": "Chọn ngôn ngữ"
 }
