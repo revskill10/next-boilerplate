@@ -43,11 +43,21 @@ class MyApp extends App {
 
     return (
       <Container>
-        <ApolloProvider client={apolloClient}>
-          <I18nextProvider
-            i18n={i18n || initialI18nInstance}
-            initialI18nStore={initialI18nStore}
-            initialLanguage={initialLanguage}
+        <I18nextProvider
+          i18n={i18n || initialI18nInstance}
+          initialI18nStore={initialI18nStore}
+          initialLanguage={initialLanguage}
+        >
+          <PageTransition
+            timeout={TIMEOUT}
+            classNames='page-transition'
+            loadingComponent={<Loader />}
+            loadingDelay={500}
+            loadingTimeout={{
+              enter: TIMEOUT,
+              exit: 0
+            }}
+            loadingClassNames='loading-indicator'
           >
             <JssProvider
               registry={this.pageContext.sheetsRegistry}
@@ -55,29 +65,20 @@ class MyApp extends App {
             >
               {/* MuiThemeProvider makes the theme available down the React
                   tree thanks to React context. */}
-              <MuiThemeProvider
-                theme={this.pageContext.theme}
-                sheetsManager={this.pageContext.sheetsManager}
-              >
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
-                <PageTransition
-                  timeout={TIMEOUT}
-                  classNames='page-transition'
-                  loadingComponent={<Loader />}
-                  loadingDelay={500}
-                  loadingTimeout={{
-                    enter: TIMEOUT,
-                    exit: 0
-                  }}
-                  loadingClassNames='loading-indicator'
+                <MuiThemeProvider
+                  theme={this.pageContext.theme}
+                  sheetsManager={this.pageContext.sheetsManager}
                 >
-                  <Component pageContext={this.pageContext} {...pageProps} />
-                </PageTransition>
-              </MuiThemeProvider>
-            </JssProvider>
+                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                  <CssBaseline />
+                  <ApolloProvider client={apolloClient}>
+                    <Component pageContext={this.pageContext} {...pageProps} />
+                  </ApolloProvider>
+                </MuiThemeProvider>
+              </JssProvider>
+            </PageTransition>
           </I18nextProvider>
-        </ApolloProvider>
+        
         <style jsx global>{`
           .page-transition-enter {
             opacity: 0;
