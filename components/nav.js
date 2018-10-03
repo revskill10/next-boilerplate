@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { withI18next } from '../hocs/withI18next'
 
 const Nav = ({t}) => 
   <nav>
@@ -6,4 +7,4 @@ const Nav = ({t}) =>
     <Link href={`/about`}><a>{t('about_menu')}</a></Link>
   </nav>
 
-export default Nav
+export default withI18next(['common'])(Nav)

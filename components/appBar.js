@@ -17,6 +17,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Link from 'next/link'
+import { withI18next } from '../hocs/withI18next'
 
 const styles = theme => ({
   root: {
@@ -140,23 +141,26 @@ class PrimarySearchAppBar extends React.Component {
       >
         <MenuItem>
         <IconButton color="inherit">
-          <Badge className={classes.margin} badgeContent={4} color="secondary">
           <Link href={`/`}>
-          <a>
-            <MailIcon />
+          <a style={{
+                    textDecoration: 'none',
+                    color: 'black'
+                  }}>
+            {t('home_menu')}
             </a>
           </Link>
-          </Badge>
         </IconButton>
         </MenuItem>
         <MenuItem>
-            <IconButton color="inherit" containerElement={
+            <IconButton color="inherit">
               <Link href={`/about`}>
-              <a>
+              <a style={{
+                    textDecoration: 'none',
+                    color: 'black'
+                  }}>
                {t('about_menu')}
              </a>
              </Link>
-            }>
             </IconButton>
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
@@ -240,4 +244,4 @@ PrimarySearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PrimarySearchAppBar);
+export default withI18next(['common'])(withStyles(styles)(PrimarySearchAppBar));

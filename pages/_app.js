@@ -10,18 +10,18 @@ import { ApolloProvider } from 'react-apollo'
 import withApollo from '../hocs/withApollo'
 import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
-import i18n from '../shared/i18n'
 
 const TIMEOUT = 400
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
+    let pageProps = {}
 
-    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {}
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
+    }
 
-    const i18nInitialProps = ctx.req ? i18n.getInitialProps(ctx.req, 'common') : {};
-
-    return { pageProps, i18nInitialProps }
+    return { pageProps }
   }
 
   constructor(props) {
@@ -38,8 +38,8 @@ class MyApp extends App {
   }
   
   render () {
-    const { Component, pageProps, apolloClient, i18nInitialProps } = this.props
-    const { i18n, initialI18nStore, initialLanguage } = i18nInitialProps
+    const { Component, pageProps, apolloClient } = this.props
+    const { i18n, initialI18nStore, initialLanguage } = pageProps || {}
 
     return (
       <Container>

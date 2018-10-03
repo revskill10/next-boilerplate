@@ -1,21 +1,16 @@
-import LanguageSwitch from '../components/languageSwitch';
 import Nav from './appBar'
+import Footer from './footer'
 
-const Layout = ({ children, t }) => (
-  <div>
+const Layout = ({ children }) => (
+  <>
     <header>
-      <Nav t={t} />
+      <Nav />
     </header>
 
     { children }
 
-    <footer>
-      {t('choose_language')}
-      <br />
-      <LanguageSwitch />
-    </footer>
-  </div>
+    <Footer />
+  </>
 )
-
 
 export default Layout;

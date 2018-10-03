@@ -3,5 +3,7 @@
   "about_page": "About",
   "home_menu": "Home",
   "about_menu": "About Us",
-  "choose_language": "Choose language"
+  "choose_language": "Choose language",
+  "language_en": "English",
+  "language_vi": "Vietnamese"
 }

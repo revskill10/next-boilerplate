@@ -10,8 +10,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
-import { withI18next } from '../hocs/withI18next'
 import Layout from '../components/layout'
+import { withI18next } from '../hocs/withI18next'
 
 
 const styles = theme => ({
@@ -51,11 +51,11 @@ class Index extends React.Component {
   };
 
   render() {
-    const { classes, t, name } = this.props;
+    const { classes, name, t } = this.props;
     const { open } = this.state;
 
     return (
-      <Layout t={t}>
+      <Layout>
         <div className={classes.root}>
         <Dialog open={open} onClose={this.handleClose}>
           <DialogTitle>{t('test')}</DialogTitle>

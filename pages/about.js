@@ -6,19 +6,17 @@ import { withI18next } from '../hocs/withI18next'
 import Layout from '../components/layout'
 
 const Page = ({t}) =>
-  <Layout t={t}>
-    <>
-      <Helmet
-        title={t('about_page')}
-        meta={[{ property: 'og:title', content: t('about_page') }]}
-      />
-      <LiveComponent
-        query={query}
-        subscription={subscription}
-        >
-        {OrganizationsList}
-      </LiveComponent>
-    </>
+  <Layout>
+    <Helmet
+      title={t('about_page')}
+      meta={[{ property: 'og:title', content: t('about_page') }]}
+    />
+    <LiveComponent
+      query={query}
+      subscription={subscription}
+      >
+      {OrganizationsList}
+    </LiveComponent>
   </Layout>
   
 
