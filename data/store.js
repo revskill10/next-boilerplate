@@ -4,12 +4,14 @@ import thunkMiddleware from 'redux-thunk'
 import footers, { reducer as footersReducer } from './footers'
 import tiers, { reducer as tiersReducer } from './tiers'
 import demoData, { reducer as demoChartReducer } from './chart'
+import socket, { reducer as socketReducer } from './socket'
 import { combineReducers } from 'redux'
 
 const exampleInitialState = {
   footers,
   tiers,
   demoData,
+  socket,
 }
 /*
 export const actionTypes = {
@@ -36,6 +38,7 @@ const reducer = combineReducers({
   footers: footersReducer,
   tiers: tiersReducer,
   demoData: demoChartReducer,
+  socket: socketReducer,
 })
 
 export const makeStore = (initialState = exampleInitialState) => {

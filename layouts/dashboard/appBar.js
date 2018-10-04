@@ -8,7 +8,7 @@ import styles from '../../styles/main'
 import Link from 'next/link'
 import { withI18next } from '../../hocs/withI18next'
 
-const Component = ({classes, t}) => 
+const Component = ({classes, t, socket}) => 
   <AppBar position="static" color="default" className={classes.appBar}>
     <Toolbar>
       <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
@@ -20,6 +20,9 @@ const Component = ({classes, t}) =>
             TF
           </a>
         </Link>
+      </Typography>
+      <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
+        {socket.status}
       </Typography>
       <Button>
         <Link href={`/dashboard`}>
@@ -55,4 +58,13 @@ const Component = ({classes, t}) =>
     </Toolbar>
   </AppBar>
 
-export default withI18next(['common'])(withStyles(styles)(Component));
+
+
+function mapStateToProps (state) {
+  const {socket} = state
+  return {socket}
+}
+
+export default connect(mapStateToProps)(
+  withI18next(['common'])(withStyles(styles)(Component))
+)

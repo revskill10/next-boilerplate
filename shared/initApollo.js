@@ -7,6 +7,7 @@ import { WebSocketLink } from 'apollo-link-ws'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { onError } from 'apollo-link-error';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
+import { types } from '../actions/types'
 
 const GRAPHQL_URL=`https://api.ihs.edu.vn/graphql`
 const WS_URL=`wss://api.ihs.edu.vn/graphql`
@@ -18,7 +19,7 @@ if (!process.browser) {
   global.fetch = fetch
 }
 
-function create (initialState, { getToken }) {
+function create (initialState, { getToken, store }) {
   const ssrMode = !process.browser
 
   const httpLink = createHttpLink({
@@ -50,7 +51,6 @@ function create (initialState, { getToken }) {
   let link = ApolloLink.from([errorLink, contextLink, httpLink])
 
   if (!ssrMode) {
-    
     const wsClient = new SubscriptionClient(WS_URL, {
       reconnect: true,
       timeout: 30000,
@@ -63,13 +63,27 @@ function create (initialState, { getToken }) {
     });
 
     wsClient.maxConnectTimeGenerator.duration = () => wsClient.maxConnectTimeGenerator.max
-    wsClient.onDisconnected(() => { console.log('Disconnected') });
+    wsClient.onDisconnected(() => { 
+        console.log('Disconnected') 
+        store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Disconnected' })
+    });
 
-    wsClient.onConnecting(() => { console.log('Connecting...')});
+    wsClient.onConnecting(() => { 
+        console.log('Connecting...')
+        store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Connecting' })
+    });
 
-    wsClient.onReconnecting(() => { console.log('Reconnecting') });
+    wsClient.onReconnecting(() => { 
+        console.log('Reconnecting') 
+        store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Reconnecting' })
+        
+    });
 
-    wsClient.onConnected(() => { console.log('Connected')});
+    wsClient.onConnected(() => { 
+      console.log('Connected')
+      store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Connected' })
+    });
+
     const wsLink = new WebSocketLink(wsClient)
     const subscriptionLink = ApolloLink.from([errorLink, wsLink])
     

@@ -3,8 +3,9 @@ import cookie from 'cookie'
 import PropTypes from 'prop-types'
 import { getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
-
 import initApollo from '../shared/initApollo'
+import { inspect } from 'util'
+import { makeStore } from '../data/store'
 
 function parseCookies (req, options = {}) {
   return cookie.parse(
@@ -17,22 +18,28 @@ export default App => {
   return class WithData extends React.Component {
     static displayName = `WithData(${App.displayName})`
     static propTypes = {
-      apolloState: PropTypes.object.isRequired
+      apolloState: PropTypes.object.isRequired,
     }
 
     static async getInitialProps (ctx) {
       const { Component, router, ctx: { req, res } } = ctx
-      const token = parseCookies(req).token
-      const apollo = initApollo({}, {
-        getToken: () => token
-      })
-
-      ctx.ctx.apolloClient = apollo
 
       let appProps = {}
       if (App.getInitialProps) {
         appProps = await App.getInitialProps(ctx)
       }
+
+      
+      const { initialReduxState } = appProps
+      const reduxStore = makeStore(initialReduxState)
+
+      const token = parseCookies(req).token
+      const apollo = initApollo({}, {
+        getToken: () => token,
+        store: reduxStore,
+      })
+
+      ctx.ctx.apolloClient = apollo
 
       if (res && res.finished) {
         // When redirecting, the response is finished.
@@ -71,21 +78,25 @@ export default App => {
       return {
         ...appProps,
         apolloState,
-        token
+        token,
       }
     }
 
     constructor (props) {
       super(props)
-      // `getDataFromTree` renders the component first, the client is passed off as a property.
-      // After that rendering is done using Next's normal rendering pipeline
+
+      const { initialReduxState } = props
+      
+      this.reduxStore = makeStore(initialReduxState)
+      
       this.apolloClient = initApollo(props.apolloState, {
-        getToken: () => props.token
+        getToken: () => props.token,
+        store: this.reduxStore,
       })
     }
 
     render () {
-      return <App {...this.props} apolloClient={this.apolloClient} />
+      return <App {...this.props} apolloClient={this.apolloClient} reduxStore={this.reduxStore} />
     }
   }
 }

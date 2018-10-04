@@ -10,9 +10,7 @@ import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
 import { Provider as ReduxProvider } from 'react-redux'
-import { makeStore } from '../data/store'
-import { fromJS } from 'immutable'
-import withRedux from 'next-redux-wrapper'
+import withRedux from '../hocs/withRedux'
 
 const TIMEOUT = 400
 
@@ -48,11 +46,11 @@ class MyApp extends App {
   }
   
   render () {
-    const { Component, pageProps, apolloClient, store } = this.props
+    const { Component, pageProps, apolloClient, reduxStore } = this.props
 
     return (
       <Container>
-        <ReduxProvider store={store}>
+        <ReduxProvider store={reduxStore}>
           <ApolloProvider client={apolloClient}>
             <PageTransition
               timeout={TIMEOUT}
@@ -115,6 +113,4 @@ class MyApp extends App {
   }
 }
 
-export default (withApollo(
-  withRedux(makeStore)(MyApp)
-))
+export default withApollo(withRedux(MyApp))
