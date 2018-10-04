@@ -1,15 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Layout from '../layouts/index'
+import Layout from '../layouts/dashboard'
 import { withI18next } from '../hocs/withI18next'
 import Table from '../components/table'
 import PieChart from '../components/charts/pieChart'
-import BarChart from '../components/charts/barChart'
 import Grid from '@material-ui/core/Grid';
 import NoSSR from 'react-no-ssr'
 import Loading from '../components/loader'
-import Animation from '../components/charts/animation'
 
 const styles = theme => ({
   root: {
@@ -53,27 +51,18 @@ class Index extends React.Component {
 
     return (
       <Layout>
+        <div className={classes.root}>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
+          <Grid item xs={4}>
             <NoSSR onSSR={<Loading />}>
-              <Grid container spacing={24}>
-                <Grid item xs={4}>
-                  <Animation />
-                </Grid>
-                <Grid item xs={4}>
-                  <PieChart />
-                </Grid>
-                <Grid item xs={4}>
-                  <BarChart />
-                </Grid>
-              </Grid>
+              <PieChart />
             </NoSSR>
-          </Grid>     
-          <Grid item xs={12}>
+          </Grid>
+          <Grid item xs>
             <Table />
-          </Grid>     
+          </Grid>
         </Grid>
-        
+        </div>
       </Layout>
     );
   }
