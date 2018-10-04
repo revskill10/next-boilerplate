@@ -1,3 +1,4 @@
+
 const tiers = [
   {
     title: 'Free',
@@ -32,5 +33,9 @@ const tiers = [
     buttonVariant: 'outlined',
   },
 ];
+
+export const reducer = (state = tiers, _action) => {
+  return state
+}
 
 export default tiers;

@@ -9,6 +9,10 @@ import withApollo from '../hocs/withApollo'
 import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
+import { Provider as ReduxProvider } from 'react-redux'
+import { makeStore } from '../data/store'
+import { fromJS } from 'immutable'
+import withRedux from 'next-redux-wrapper'
 
 const TIMEOUT = 400
 
@@ -44,41 +48,41 @@ class MyApp extends App {
   }
   
   render () {
-    const { Component, pageProps, apolloClient } = this.props
+    const { Component, pageProps, apolloClient, store } = this.props
 
     return (
       <Container>
-        <ApolloProvider client={apolloClient}>
-          <PageTransition
-            timeout={TIMEOUT}
-            classNames='page-transition'
-            loadingComponent={<Loader />}
-            loadingDelay={500}
-            loadingTimeout={{
-              enter: TIMEOUT,
-              exit: 0
-            }}
-            loadingClassNames='loading-indicator'
-          >
-            <JssProvider
-              registry={this.pageContext.sheetsRegistry}
-              generateClassName={this.pageContext.generateClassName}
+        <ReduxProvider store={store}>
+          <ApolloProvider client={apolloClient}>
+            <PageTransition
+              timeout={TIMEOUT}
+              classNames='page-transition'
+              loadingComponent={<Loader />}
+              loadingDelay={500}
+              loadingTimeout={{
+                enter: TIMEOUT,
+                exit: 0
+              }}
+              loadingClassNames='loading-indicator'
             >
-              {/* MuiThemeProvider makes the theme available down the React
-                  tree thanks to React context. */}
-                <MuiThemeProvider
-                  theme={this.pageContext.theme}
-                  sheetsManager={this.pageContext.sheetsManager}
-                >
-                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                  <CssBaseline />
-                  
-                    <Component pageContext={this.pageContext} {...pageProps} />
-                  
-                </MuiThemeProvider>
-              </JssProvider>
-            </PageTransition>
-          </ApolloProvider>
+              <JssProvider
+                registry={this.pageContext.sheetsRegistry}
+                generateClassName={this.pageContext.generateClassName}
+              >
+                {/* MuiThemeProvider makes the theme available down the React
+                    tree thanks to React context. */}
+                  <MuiThemeProvider
+                    theme={this.pageContext.theme}
+                    sheetsManager={this.pageContext.sheetsManager}
+                  >
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline />
+                      <Component pageContext={this.pageContext} {...pageProps} />
+                  </MuiThemeProvider>
+                </JssProvider>
+              </PageTransition>
+            </ApolloProvider>
+          </ReduxProvider>
         <style jsx global>{`
           .page-transition-enter {
             opacity: 0;
@@ -111,4 +115,6 @@ class MyApp extends App {
   }
 }
 
-export default withApollo(MyApp)
+export default (withApollo(
+  withRedux(makeStore)(MyApp)
+))

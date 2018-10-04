@@ -4,11 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../../styles/main'
-import footers from '../../data/footers'
 import LanguageSwitch from '../../components/languageSwitch'
 import { withI18next } from '../../hocs/withI18next'
+import { connect } from 'react-redux'
 
-const Component = ({classes, t}) =>
+const Component = ({classes, t, footers}) =>
   <footer className={classNames(classes.footer, classes.layout)}>
     <Grid container spacing={32} justify="space-evenly">
       <Grid item xs key={`choose_language`}>
@@ -30,8 +30,14 @@ const Component = ({classes, t}) =>
         </Grid>
       ))}
     </Grid>
-    
-    
   </footer>
 
-export default withI18next(['common'])(withStyles(styles)(Component))
+const mapStateToProps = (state) => {
+  return {
+    footers: state.footers,
+  }
+}  
+
+export default connect(mapStateToProps, null)(
+  withI18next(['common'])(withStyles(styles)(Component))
+)

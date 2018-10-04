@@ -10,10 +10,10 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import styles from '../styles/main'
-import tiers from '../data/tiers'
 import Layout from '../layouts/index'
+import { connect } from 'react-redux'
 
-const Page = ({classes}) =>
+const Page = ({classes, tiers}) =>
   <Layout>
     <div className={classes.heroContent}>
       <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
@@ -66,6 +66,13 @@ const Page = ({classes}) =>
 
 Page.propTypes = {
   classes: PropTypes.object.isRequired,
+  tiers: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(Page);
+const mapStateToProps = (state) => {
+  return {
+    tiers: state.tiers,
+  }
+}  
+
+export default connect(mapStateToProps, null)(withStyles(styles)(Page));

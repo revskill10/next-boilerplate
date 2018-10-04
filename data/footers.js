@@ -1,3 +1,4 @@
+
 const footers = [
   {
     title: 'Company',
@@ -16,5 +17,10 @@ const footers = [
     description: ['Privacy policy', 'Terms of use'],
   },
 ];
+
+
+export const reducer = (state = footers, _action) => {
+  return state
+}
 
 export default footers;
