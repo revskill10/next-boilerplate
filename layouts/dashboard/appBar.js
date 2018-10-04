@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from '../../styles/main'
 import Link from 'next/link'
 import { withI18next } from '../../hocs/withI18next'
+import { connect } from 'react-redux'
 
 const Component = ({classes, t, socket}) => 
   <AppBar position="static" color="default" className={classes.appBar}>
