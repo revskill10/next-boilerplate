@@ -36,7 +36,6 @@ export default App => {
       const token = parseCookies(req).token
       const apollo = initApollo({}, {
         getToken: () => token,
-        store: reduxStore,
       })
 
       ctx.ctx.apolloClient = apollo
@@ -58,6 +57,7 @@ export default App => {
               Component={Component}
               router={router}
               apolloClient={apollo}
+              reduxStore={reduxStore}
             />
           )
         } catch (error) {
