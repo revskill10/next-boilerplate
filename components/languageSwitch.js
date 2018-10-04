@@ -20,8 +20,8 @@ const LanguageSwitch = ({t, router}) => (
     } }
   >
     
-    <MenuItem value={'en'}>{t('language_en')}</MenuItem>
-    <MenuItem value={'vi'}>{t('language_vi')}</MenuItem>
+    <MenuItem key={'en'} value={'en'}>{t('language_en')}</MenuItem>
+    <MenuItem key={'vi'} value={'vi'}>{t('language_vi')}</MenuItem>
   </Select>
 )
 

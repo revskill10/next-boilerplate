@@ -2,45 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
-import Helmet from 'react-helmet'
 
 class MyDocument extends Document {
-  // should render on <html>
-  get helmetHtmlAttrComponents () {
-    return this.props.helmet.htmlAttributes.toComponent()
-  }
-
-  // should render on <body>
-  get helmetBodyAttrComponents () {
-    return this.props.helmet.bodyAttributes.toComponent()
-  }
-
-  // should render on <head>
-  get helmetHeadComponents () {
-    return Object.keys(this.props.helmet)
-      .filter(el => el !== 'htmlAttributes' && el !== 'bodyAttributes')
-      .map(el => this.props.helmet[el].toComponent())
-  }
-
-  get helmetJsx () {
-    return (<Helmet
-      htmlAttributes={{lang: 'en'}}
-      title='Hello next.js!'
-      meta={[
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { property: 'og:title', content: 'Hello next.js!' }
-      ]}
-    />)
-  }
-
   render() {
     const { pageContext } = this.props;
 
     return (
-      <html lang="en" dir="ltr" {...this.helmetHtmlAttrComponents}>
-        <Head>
-          { this.helmetJsx }
-          { this.helmetHeadComponents }
+      <html lang="en" dir="ltr">
+        <Head>         
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -54,7 +23,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
         </Head>
-        <body {...this.helmetBodyAttrComponents}>
+        <body>
           <Main />
           <NextScript />
         </body>
@@ -103,8 +72,7 @@ MyDocument.getInitialProps = ctx => {
 
   return {
     ...page,
-    pageContext,
-    helmet: Helmet.renderStatic(),
+    pageContext,    
     // Styles fragment is rendered after the app and page rendering finish.
     styles: (
       <React.Fragment>

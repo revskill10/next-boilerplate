@@ -1,7 +1,5 @@
 import React from 'react'
 import App, { Container } from 'next/app'
-import { I18nextProvider } from 'react-i18next'
-import initialI18nInstance from '../shared/i18n'
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -10,6 +8,7 @@ import { ApolloProvider } from 'react-apollo'
 import withApollo from '../hocs/withApollo'
 import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
+import i18n from '../shared/i18n'
 
 const TIMEOUT = 400
 
@@ -19,6 +18,13 @@ class MyApp extends App {
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
+    }
+
+    if (ctx.req) {
+      const lng = ctx.req.query.lng
+      if (lng !== 'en') {
+        i18n.changeLanguage(lng)
+      }
     }
 
     return { pageProps }
@@ -39,46 +45,39 @@ class MyApp extends App {
   
   render () {
     const { Component, pageProps, apolloClient } = this.props
-    const { i18n, initialI18nStore, initialLanguage } = pageProps || {}
 
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <I18nextProvider
-            i18n={i18n || initialI18nInstance}
-            initialI18nStore={initialI18nStore}
-            initialLanguage={initialLanguage}
+          <PageTransition
+            timeout={TIMEOUT}
+            classNames='page-transition'
+            loadingComponent={<Loader />}
+            loadingDelay={500}
+            loadingTimeout={{
+              enter: TIMEOUT,
+              exit: 0
+            }}
+            loadingClassNames='loading-indicator'
           >
-            <PageTransition
-              timeout={TIMEOUT}
-              classNames='page-transition'
-              loadingComponent={<Loader />}
-              loadingDelay={500}
-              loadingTimeout={{
-                enter: TIMEOUT,
-                exit: 0
-              }}
-              loadingClassNames='loading-indicator'
+            <JssProvider
+              registry={this.pageContext.sheetsRegistry}
+              generateClassName={this.pageContext.generateClassName}
             >
-              <JssProvider
-                registry={this.pageContext.sheetsRegistry}
-                generateClassName={this.pageContext.generateClassName}
-              >
-                {/* MuiThemeProvider makes the theme available down the React
-                    tree thanks to React context. */}
-                  <MuiThemeProvider
-                    theme={this.pageContext.theme}
-                    sheetsManager={this.pageContext.sheetsManager}
-                  >
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    <CssBaseline />
-                    
-                      <Component pageContext={this.pageContext} {...pageProps} />
-                    
-                  </MuiThemeProvider>
-                </JssProvider>
-              </PageTransition>
-            </I18nextProvider>
+              {/* MuiThemeProvider makes the theme available down the React
+                  tree thanks to React context. */}
+                <MuiThemeProvider
+                  theme={this.pageContext.theme}
+                  sheetsManager={this.pageContext.sheetsManager}
+                >
+                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                  <CssBaseline />
+                  
+                    <Component pageContext={this.pageContext} {...pageProps} />
+                  
+                </MuiThemeProvider>
+              </JssProvider>
+            </PageTransition>
           </ApolloProvider>
         <style jsx global>{`
           .page-transition-enter {

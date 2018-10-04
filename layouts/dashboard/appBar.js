@@ -42,6 +42,13 @@ const Component = ({classes, t}) =>
           </a>
         </Link>
       </Button>
+      <Button>
+        <Link href={`/contact`}>
+          <a className={classes.appBarLink}>
+            {t('contact_menu')}
+          </a>
+        </Link>
+      </Button>
       <Button color="primary" variant="outlined">
         Login
       </Button>
