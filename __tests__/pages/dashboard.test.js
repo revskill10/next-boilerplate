@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 //import { shallow } from 'enzyme'
-import App from '../../pages/index.js'
+import App from '../../pages/dashboard.js'
 import mockPage from '../../test/mockPage'
 /*
 describe('With Enzyme', () => {
@@ -13,7 +13,7 @@ describe('With Enzyme', () => {
 })
 */
 describe('With Snapshot Testing', () => {
-  it('App shows "Index"', () => {
+  it('App shows "Dashboard"', () => {
     const component = mockPage(App)
     const tree = component.toJSON()
     expect(tree).toMatchSnapshot()

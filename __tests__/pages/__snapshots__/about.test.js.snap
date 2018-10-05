@@ -1,0 +1,596 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`With Snapshot Testing App shows "About" 1`] = `
+Array [
+  <header
+    className="MuiPaper-root-19 MuiPaper-elevation4-25 MuiAppBar-root-10 MuiAppBar-positionStatic-14 MuiAppBar-colorDefault-16 Component-appBar-1"
+  >
+    <div
+      className="MuiToolbar-root-46 MuiToolbar-regular-48 MuiToolbar-gutters-47"
+    >
+      <h2
+        className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorInherit-70 MuiTypography-noWrap-67 Component-toolbarTitle-2"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "black",
+              "textDecoration": "none",
+            }
+          }
+        >
+          TF
+        </a>
+      </h2>
+      <h2
+        className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorInherit-70 MuiTypography-noWrap-67 Component-toolbarTitle-2"
+      >
+        Disconnected
+      </h2>
+      <button
+        className="MuiButtonBase-root-102 MuiButton-root-76 MuiButton-text-78 MuiButton-flat-81"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-77"
+        >
+          <a
+            className="Component-appBarLink-9"
+            href="/dashboard"
+            onClick={[Function]}
+          >
+            dashboard_menu
+          </a>
+        </span>
+        <span
+          className="MuiTouchRipple-root-105"
+        />
+      </button>
+      <button
+        className="MuiButtonBase-root-102 MuiButton-root-76 MuiButton-text-78 MuiButton-flat-81"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-77"
+        >
+          <a
+            className="Component-appBarLink-9"
+            href="/about"
+            onClick={[Function]}
+          >
+            about_menu
+          </a>
+        </span>
+        <span
+          className="MuiTouchRipple-root-105"
+        />
+      </button>
+      <button
+        className="MuiButtonBase-root-102 MuiButton-root-76 MuiButton-text-78 MuiButton-flat-81"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-77"
+        >
+          <a
+            className="Component-appBarLink-9"
+            href="/pricing"
+            onClick={[Function]}
+          >
+            pricing_menu
+          </a>
+        </span>
+        <span
+          className="MuiTouchRipple-root-105"
+        />
+      </button>
+      <button
+        className="MuiButtonBase-root-102 MuiButton-root-76 MuiButton-text-78 MuiButton-flat-81"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-77"
+        >
+          <a
+            className="Component-appBarLink-9"
+            href="/contact"
+            onClick={[Function]}
+          >
+            contact_menu
+          </a>
+        </span>
+        <span
+          className="MuiTouchRipple-root-105"
+        />
+      </button>
+      <button
+        className="MuiButtonBase-root-102 MuiButton-root-76 MuiButton-text-78 MuiButton-textPrimary-79 MuiButton-outlined-84 MuiButton-outlinedPrimary-85"
+        disabled={false}
+        onBlur={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex="0"
+        type="button"
+      >
+        <span
+          className="MuiButton-label-77"
+        >
+          Login
+        </span>
+        <span
+          className="MuiTouchRipple-root-105"
+        />
+      </button>
+    </div>
+  </header>,
+  <main>
+    <div
+      className="AutoGrid-root-112"
+    >
+      <div
+        className="MuiGrid-container-113 MuiGrid-spacing-xs-24-137"
+      >
+        <div
+          className="MuiGrid-item-114 MuiGrid-grid-xs-1-142"
+        />
+        <div
+          className="MuiGrid-item-114 MuiGrid-grid-xs-9-150"
+        >
+          <div>
+            Loading
+          </div>
+        </div>
+        <div
+          className="MuiGrid-item-114 MuiGrid-grid-xs-true-141"
+        >
+          <div
+            className="NestedList-root-210"
+          >
+            <nav
+              className="MuiList-root-212 MuiList-padding-213 MuiList-subheader-215"
+            >
+              <div
+                className="MuiListSubheader-root-216 MuiListSubheader-sticky-221 MuiListSubheader-gutters-219"
+              >
+                Right
+              </div>
+              <div
+                className="MuiButtonBase-root-102 MuiListItem-root-222 MuiListItem-default-225 MuiListItem-gutters-229 MuiListItem-button-230"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                role="button"
+                tabIndex="0"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root-234 MuiListItemIcon-root-233"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+                <div
+                  className="MuiListItemText-root-243 MuiListItemText-inset-244"
+                >
+                  <span
+                    className="MuiTypography-root-50 MuiTypography-subheading-57 MuiListItemText-primary-246"
+                  >
+                    Sent mail
+                  </span>
+                </div>
+                <span
+                  className="MuiTouchRipple-root-105"
+                />
+              </div>
+              <div
+                className="MuiButtonBase-root-102 MuiListItem-root-222 MuiListItem-default-225 MuiListItem-gutters-229 MuiListItem-button-230"
+                onBlur={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                role="button"
+                tabIndex="0"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root-234 MuiListItemIcon-root-233"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21.99 8c0-.72-.37-1.35-.94-1.7L12 1 2.95 6.3C2.38 6.65 2 7.28 2 8v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2l-.01-10zM12 13L3.74 7.84 12 3l8.26 4.84L12 13z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+                <div
+                  className="MuiListItemText-root-243 MuiListItemText-inset-244"
+                >
+                  <span
+                    className="MuiTypography-root-50 MuiTypography-subheading-57 MuiListItemText-primary-246"
+                  >
+                    Drafts
+                  </span>
+                </div>
+                <span
+                  className="MuiTouchRipple-root-105"
+                />
+              </div>
+              <div
+                className="MuiButtonBase-root-102 MuiListItem-root-222 MuiListItem-default-225 MuiListItem-gutters-229 MuiListItem-button-230"
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                onKeyUp={[Function]}
+                onMouseDown={[Function]}
+                onMouseLeave={[Function]}
+                onMouseUp={[Function]}
+                onTouchEnd={[Function]}
+                onTouchMove={[Function]}
+                onTouchStart={[Function]}
+                role="button"
+                tabIndex="0"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root-234 MuiListItemIcon-root-233"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 3H4.99c-1.11 0-1.98.9-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10zm-3-5h-2V7h-4v3H8l4 4 4-4z"
+                  />
+                  <path
+                    d="M0 0h24v24H0V0z"
+                    fill="none"
+                  />
+                </svg>
+                <div
+                  className="MuiListItemText-root-243 MuiListItemText-inset-244"
+                >
+                  <span
+                    className="MuiTypography-root-50 MuiTypography-subheading-57 MuiListItemText-primary-246"
+                  >
+                    Inbox
+                  </span>
+                </div>
+                <svg
+                  aria-hidden="true"
+                  className="MuiSvgIcon-root-234"
+                  focusable="false"
+                  role="presentation"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
+                  />
+                  <path
+                    d="M0 0h24v24H0z"
+                    fill="none"
+                  />
+                </svg>
+                <span
+                  className="MuiTouchRipple-root-105"
+                />
+              </div>
+              <div
+                className="MuiCollapse-container-249 MuiCollapse-entered-250"
+                style={
+                  Object {
+                    "minHeight": "0px",
+                  }
+                }
+              >
+                <div
+                  className="MuiCollapse-wrapper-251"
+                >
+                  <div
+                    className="MuiCollapse-wrapperInner-252"
+                  >
+                    <div
+                      className="MuiList-root-212"
+                    >
+                      <div
+                        className="MuiButtonBase-root-102 MuiListItem-root-222 MuiListItem-default-225 MuiListItem-gutters-229 MuiListItem-button-230 NestedList-nested-211"
+                        onBlur={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        onMouseLeave={[Function]}
+                        onMouseUp={[Function]}
+                        onTouchEnd={[Function]}
+                        onTouchMove={[Function]}
+                        onTouchStart={[Function]}
+                        role="button"
+                        tabIndex="0"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          className="MuiSvgIcon-root-234 MuiListItemIcon-root-233"
+                          focusable="false"
+                          role="presentation"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
+                          />
+                          <path
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                        </svg>
+                        <div
+                          className="MuiListItemText-root-243 MuiListItemText-inset-244"
+                        >
+                          <span
+                            className="MuiTypography-root-50 MuiTypography-subheading-57 MuiListItemText-primary-246"
+                          >
+                            Starred
+                          </span>
+                        </div>
+                        <span
+                          className="MuiTouchRipple-root-105"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>,
+  <footer
+    className="Component-footer-260 Component-layout-255"
+  >
+    <div
+      className="MuiGrid-container-113 MuiGrid-spacing-xs-32-138 MuiGrid-justify-xs-space-evenly-134"
+    >
+      <div
+        className="MuiGrid-item-114 MuiGrid-grid-xs-true-141"
+      >
+        <h2
+          className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorTextPrimary-73 MuiTypography-gutterBottom-68"
+        >
+          choose_language
+        </h2>
+        <div
+          className="MuiInputBase-root-282 MuiInput-root-269 MuiInput-underline-273"
+          onClick={[Function]}
+        >
+          <div
+            className="MuiSelect-root-262"
+          >
+            <div
+              aria-haspopup="true"
+              aria-owns={null}
+              aria-pressed="false"
+              className="MuiSelect-select-263 MuiSelect-selectMenu-266 MuiInputBase-input-292 MuiInput-input-277"
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              role="button"
+              tabIndex={0}
+            >
+              language_en
+            </div>
+            <input
+              type="hidden"
+              value="en"
+            />
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root-234 MuiSelect-icon-268"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiGrid-item-114 MuiGrid-grid-xs-true-141"
+      >
+        <h2
+          className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorTextPrimary-73 MuiTypography-gutterBottom-68"
+        >
+          Company
+        </h2>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Team
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          History
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Contact us
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Locations
+        </h3>
+      </div>
+      <div
+        className="MuiGrid-item-114 MuiGrid-grid-xs-true-141"
+      >
+        <h2
+          className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorTextPrimary-73 MuiTypography-gutterBottom-68"
+        >
+          Features
+        </h2>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Cool stuff
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Random feature
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Team feature
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Developer stuff
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Another one
+        </h3>
+      </div>
+      <div
+        className="MuiGrid-item-114 MuiGrid-grid-xs-true-141"
+      >
+        <h2
+          className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorTextPrimary-73 MuiTypography-gutterBottom-68"
+        >
+          Resources
+        </h2>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Resource
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Resource name
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Another resource
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Final resource
+        </h3>
+      </div>
+      <div
+        className="MuiGrid-item-114 MuiGrid-grid-xs-true-141"
+      >
+        <h2
+          className="MuiTypography-root-50 MuiTypography-title-56 MuiTypography-colorTextPrimary-73 MuiTypography-gutterBottom-68"
+        >
+          Legal
+        </h2>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Privacy policy
+        </h3>
+        <h3
+          className="MuiTypography-root-50 MuiTypography-subheading-57 MuiTypography-colorTextSecondary-74"
+        >
+          Terms of use
+        </h3>
+      </div>
+    </div>
+  </footer>,
+]
+`;

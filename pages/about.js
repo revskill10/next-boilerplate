@@ -13,12 +13,5 @@ const Page = () =>
       {OrganizationsList}
     </LiveComponent>
   </Layout>
-
-Page.getInitialProps = async () => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 500)
-  })
-  return {}
-}
   
 export default withI18next(['common'])(Page);

@@ -1,10 +1,8 @@
 import Nav from './appBar'
 import Footer from './footer'
 import Grid from '@material-ui/core/Grid';
-import Modules from './sideBar'
-import Sidebar from './rightBar'
 import { withStyles } from '@material-ui/core';
-import Tabs from './tabs'
+import Modules from '../../modules'
 const styles = theme => ({
   '@global': {
     body: {
@@ -17,31 +15,22 @@ const styles = theme => ({
   },
 });
 
-const AutoGrid = ({classes, children}) =>
+const AutoGrid = ({classes}) =>
   <div className={classes.root}>
     <Grid container spacing={24}>
-      <Grid item xs>
+      <Grid item xs={12}>
         <Modules />
-      </Grid>
-      <Grid item xs={8}>
-        <Tabs />
-        {children}
-      </Grid>
-      <Grid item xs>
-        <Sidebar />
       </Grid>
     </Grid>
   </div>
 
 const StyledAutoGrid = withStyles(styles)(AutoGrid)
 
-const Layout = ({children }) => (
+const Layout = () => (
   <>
     <Nav />
     <main>
-      <StyledAutoGrid>
-        {children}
-      </StyledAutoGrid>
+      <StyledAutoGrid  />
     </main>
     <Footer />
   </>

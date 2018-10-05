@@ -4,7 +4,7 @@ import renderer from 'react-test-renderer'
 const component = App => {
   return renderer.create(
     <MockProvider>
-      <App/>
+      <App />
     </MockProvider>
   )
 }

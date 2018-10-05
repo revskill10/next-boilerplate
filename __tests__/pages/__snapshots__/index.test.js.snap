@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`With Snapshot Testing App shows "Hello world!" 1`] = `
+exports[`With Snapshot Testing App shows "Index" 1`] = `
 Array [
   <header
     className="MuiPaper-root-20 MuiPaper-elevation4-26 MuiAppBar-root-11 MuiAppBar-positionStatic-15 MuiAppBar-colorDefault-17 Component-appBar-2"
