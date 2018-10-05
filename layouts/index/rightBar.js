@@ -13,6 +13,7 @@ import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import Clock from '../../components/clock'
 
 const styles = theme => ({
   root: {
@@ -40,7 +41,9 @@ class NestedList extends React.Component {
       <div className={classes.root}>
         <List
           component="nav"
-          subheader={<ListSubheader component="div">Right</ListSubheader>}
+          subheader={<ListSubheader component="div">
+            <Clock size={160} timeFormat="24hour" hourFormat="standard" />
+          </ListSubheader>}
         >
           <ListItem button>
             <ListItemIcon>
