@@ -1,7 +1,29 @@
 {
-  "presets": ["next/babel"],
-  "plugins": [
-    "import-graphql",
-    "graphql-tag"
-  ]
+  "env": {
+    "development": {
+      "presets": ["next/babel"],
+      "plugins": [
+        "import-graphql",
+        "graphql-tag"
+      ]
+    },
+    "production": {
+      "presets": ["next/babel"],
+      "plugins": [
+        "import-graphql",
+        "graphql-tag"
+      ]
+    },
+    "test": {
+      "presets": [["next/babel", { 
+        "preset-env": { 
+          "modules": "commonjs" 
+        } 
+      }]],
+      "plugins": [
+        "import-graphql",
+        "graphql-tag"
+      ]
+    }
+  }
 }

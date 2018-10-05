@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import App, { Container } from 'next/app'
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,23 +10,31 @@ import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
 import { Provider as ReduxProvider } from 'react-redux'
-import withRedux from '../hocs/withRedux'
 
 const TIMEOUT = 400
 
 class MyApp extends App {
+  static displayName = `MyApp`
   static async getInitialProps ({ Component, ctx }) {
     let pageProps = {}
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
 
     if (ctx.req) {
       const lng = ctx.req.query.lng
       if (lng !== 'en') {
         i18n.changeLanguage(lng)
       }
+
+      if (Component.getInitialProps) {
+        pageProps = await Component.getInitialProps(ctx)
+      }
+
+      const { store } = ctx
+
+      return { pageProps, store }
+    } 
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
     }
 
     return { pageProps }
@@ -46,11 +54,11 @@ class MyApp extends App {
   }
   
   render () {
-    const { Component, pageProps, apolloClient, reduxStore } = this.props
+    const { Component, pageProps, apolloClient, store } = this.props
 
     return (
       <Container>
-        <ReduxProvider store={reduxStore}>
+        <ReduxProvider store={store}>
           <ApolloProvider client={apolloClient}>
             <PageTransition
               timeout={TIMEOUT}
@@ -73,9 +81,11 @@ class MyApp extends App {
                     theme={this.pageContext.theme}
                     sheetsManager={this.pageContext.sheetsManager}
                   >
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    <CssBaseline />
+                    <Fragment>
+                      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                      <CssBaseline />
                       <Component pageContext={this.pageContext} {...pageProps} />
+                    </Fragment>
                   </MuiThemeProvider>
                 </JssProvider>
               </PageTransition>
@@ -113,4 +123,4 @@ class MyApp extends App {
   }
 }
 
-export default withApollo(withRedux(MyApp))
+export default withApollo(MyApp)

@@ -24,14 +24,7 @@ export default App => {
     static async getInitialProps (ctx) {
       const { Component, router, ctx: { req, res } } = ctx
 
-      let appProps = {}
-      if (App.getInitialProps) {
-        appProps = await App.getInitialProps(ctx)
-      }
-
-      
-      const { initialReduxState } = appProps
-      const reduxStore = makeStore(initialReduxState)
+      const store = makeStore()
 
       const token = parseCookies(req).token
       const apollo = initApollo({}, {
@@ -40,6 +33,14 @@ export default App => {
 
       ctx.ctx.apolloClient = apollo
 
+      // Provide the store to getInitialProps of pages
+      ctx.ctx.store = store
+
+      let appProps = {}
+      if (App.getInitialProps) {
+        appProps = await App.getInitialProps(ctx)
+      }
+      
       if (res && res.finished) {
         // When redirecting, the response is finished.
         // No point in continuing to render
@@ -57,7 +58,7 @@ export default App => {
               Component={Component}
               router={router}
               apolloClient={apollo}
-              reduxStore={reduxStore}
+              store={store}
             />
           )
         } catch (error) {
@@ -79,15 +80,14 @@ export default App => {
         ...appProps,
         apolloState,
         token,
+        reduxState: store.getState(),
       }
     }
 
     constructor (props) {
       super(props)
 
-      const { initialReduxState } = props
-      
-      this.reduxStore = makeStore(initialReduxState)
+      this.reduxStore = makeStore(props.reduxState);
       
       this.apolloClient = initApollo(props.apolloState, {
         getToken: () => props.token,
@@ -96,7 +96,7 @@ export default App => {
     }
 
     render () {
-      return <App {...this.props} apolloClient={this.apolloClient} reduxStore={this.reduxStore} />
+      return <App {...this.props} apolloClient={this.apolloClient} store={this.reduxStore} />
     }
   }
 }

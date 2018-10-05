@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import NoSSR from 'react-no-ssr'
 import Loading from '../components/loader'
 import Animation from '../components/charts/animation'
+import Head from 'next/head'
 
 const styles = theme => ({
   root: {
@@ -53,6 +54,10 @@ class Index extends React.Component {
 
     return (
       <Layout>
+        <Head>
+          <title>My page title</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <NoSSR onSSR={<Loading />}>
