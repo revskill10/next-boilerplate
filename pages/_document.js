@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
+import { ServerStyleSheet } from 'styled-components'
 
 class MyDocument extends Document {
   render() {
@@ -39,6 +40,7 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/static/ms-icon-144x144.png" />
           <meta name="theme-color" content="#ffffff" />
+          {this.props.styleTags}
         </Head>
         <body>
           <Main />
@@ -73,10 +75,12 @@ MyDocument.getInitialProps = ctx => {
   // 4. page.render
   // Render app and page and get the context of the page with collected side effects.
   let pageContext;
+  const sheet = new ServerStyleSheet()
+
   const page = ctx.renderPage(Component => {
     const WrappedComponent = props => {
       pageContext = props.pageContext;
-      return <Component {...props} />;
+      return sheet.collectStyles(<Component {...props} />);
     };
 
     WrappedComponent.propTypes = {
@@ -86,8 +90,11 @@ MyDocument.getInitialProps = ctx => {
     return WrappedComponent;
   });
 
+  const styleTags = sheet.getStyleElement()
+
   return {
     ...page,
+    styleTags,
     pageContext,    
     // Styles fragment is rendered after the app and page rendering finish.
     styles: (

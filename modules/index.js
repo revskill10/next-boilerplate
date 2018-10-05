@@ -13,6 +13,8 @@ import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Typography from '@material-ui/core/Typography';
 import dynamic from 'next/dynamic'
+import {SupervisorAccount} from 'styled-icons/material/SupervisorAccount.cjs'
+
 
 const Accounts = dynamic(() => import('./accounts'), {
   ssr: false,
@@ -60,7 +62,7 @@ class ScrollableTabsButtonForce extends React.Component {
             indicatorColor="primary"
             textColor="primary"
           >
-            <Tab label="Accounts" icon={<PhoneIcon />} />
+            <Tab label="Accounts" icon={<SupervisorAccount size="40" />} />
             <Tab label="Behavior Monitoring" icon={<FavoriteIcon />} />
             <Tab label="Student Registrations" icon={<PersonPinIcon />} />
             <Tab label="Item Four" icon={<HelpIcon />} />

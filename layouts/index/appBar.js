@@ -8,6 +8,10 @@ import styles from '../../styles/main'
 import Link from 'next/link'
 import { withI18next } from '../../hocs/withI18next'
 import { connect } from 'react-redux'
+//import {SignalWifiStatusbar4Bar, SignalWifiStatusbar1Bar} from 'styled-icons/material'
+
+import {SignalWifiStatusbar4Bar} from 'styled-icons/material/SignalWifiStatusbar4Bar.cjs'
+import {SignalWifiStatusbar1Bar} from 'styled-icons/material/SignalWifiStatusbar1Bar.cjs'
 
 const Component = ({classes, t, socket}) => 
   <AppBar position="static" color="default" className={classes.appBar}>
@@ -24,7 +28,8 @@ const Component = ({classes, t, socket}) =>
       </Typography>
 
       <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
-        {socket.status}
+        {socket.status === 'Connected' && <SignalWifiStatusbar4Bar size='40' />}
+        {socket.status !== 'Connected' && <SignalWifiStatusbar1Bar size='40' />}
       </Typography>
 
       <Button>

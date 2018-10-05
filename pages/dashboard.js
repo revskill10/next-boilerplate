@@ -50,20 +50,20 @@ class Index extends React.Component {
     const { open } = this.state;
 
     return (
-      <Layout>
-        <div className={classes.root}>
-        <Grid container spacing={24}>
-          <Grid item xs={4}>
-            <NoSSR onSSR={<Loading />}>
+      <NoSSR onSSR={<Loading />}>
+        <Layout>
+          <div className={classes.root}>
+          <Grid container spacing={24}>
+            <Grid item xs={4}>
               <PieChart />
-            </NoSSR>
+            </Grid>
+            <Grid item xs>
+              <Table />
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <Table />
-          </Grid>
-        </Grid>
-        </div>
-      </Layout>
+          </div>
+        </Layout>
+      </NoSSR>
     );
   }
 }

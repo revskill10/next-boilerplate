@@ -15,7 +15,6 @@ describe('With Enzyme', () => {
 describe('With Snapshot Testing', () => {
   it('App shows "Index"', () => {
     const component = mockPage(App)
-    const tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
   })
 })

@@ -1,12 +1,13 @@
 import MockProvider from './mockProvider'
 import renderer from 'react-test-renderer'
+import toJson from 'enzyme-to-json'
 
 const component = App => {
-  return renderer.create(
+  return toJson(renderer.create(
     <MockProvider>
       <App />
     </MockProvider>
-  )
+  ))
 }
 
 export default component
