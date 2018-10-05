@@ -7,7 +7,7 @@ import { WebSocketLink } from 'apollo-link-ws'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { onError } from 'apollo-link-error';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
-import { types } from '../actions/types'
+import { updateSocketStatus } from '../actions'
 
 const GRAPHQL_URL=`https://api.ihs.edu.vn/graphql`
 const WS_URL=`wss://api.ihs.edu.vn/graphql`
@@ -64,24 +64,19 @@ function create (initialState, { getToken, store }) {
 
     wsClient.maxConnectTimeGenerator.duration = () => wsClient.maxConnectTimeGenerator.max
     wsClient.onDisconnected(() => { 
-        console.log('Disconnected') 
-        store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Disconnected' })
+      store.dispatch(updateSocketStatus('Disconnected'))
     });
 
     wsClient.onConnecting(() => { 
-        console.log('Connecting...')
-        store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Connecting' })
+      store.dispatch(updateSocketStatus('Connecting'))
     });
 
     wsClient.onReconnecting(() => { 
-        console.log('Reconnecting') 
-        store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Reconnecting' })
-        
+      store.dispatch(updateSocketStatus('Reconnecting'))
     });
 
     wsClient.onConnected(() => { 
-      console.log('Connected')
-      store.dispatch({ type: types.UPDATE_SOCKET_STATUS, status: 'Connected' })
+      store.dispatch(updateSocketStatus('Connected'))
     });
 
     const wsLink = new WebSocketLink(wsClient)

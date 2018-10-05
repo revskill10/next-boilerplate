@@ -22,6 +22,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+
         </Head>
         <body>
           <Main />
@@ -54,7 +55,6 @@ MyDocument.getInitialProps = ctx => {
   // 2. page.getInitialProps
   // 3. app.render
   // 4. page.render
-
   // Render app and page and get the context of the page with collected side effects.
   let pageContext;
   const page = ctx.renderPage(Component => {
@@ -83,7 +83,7 @@ MyDocument.getInitialProps = ctx => {
         />
         {flush() || null}
       </React.Fragment>
-    ),
+    ),    
   };
 };
 
