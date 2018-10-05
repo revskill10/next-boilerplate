@@ -25,7 +25,7 @@ const AutoGrid = ({classes, children}) =>
       <Grid item xs={9}>
         {children}
       </Grid>
-      <Grid item xs>
+      <Grid item xs={2}>
         <Sidebar />
       </Grid>
     </Grid>
