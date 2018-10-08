@@ -26,7 +26,8 @@ function runApp(){
       const server = express();
       require('./i18n/app')(express, server, i18nextMiddleware, i18n);
       require('./auth/app')(app, server);
-      require('./default')(app, server);
+      require('./caching/app')(app, server)
+      require('./default')(app, server);      
     } catch(err) {
       console.error(err.stack)
     }

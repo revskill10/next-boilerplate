@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "test": "NODE_ENV=test jest",
-    "dev": "node server/server.js",
+    "dev": "nodemon server/server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server/server.js",
     "storybook": "start-storybook -p 6006",
@@ -69,6 +69,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.3.0",
     "jss": "^9.8.7",
+    "lru-cache": "^4.1.3",
     "mui-datatables": "^2.0.0-beta-32",
     "next": "^7.0.2-canary.7",
     "next-page-transitions": "^1.0.0-alpha.4",
@@ -111,6 +112,7 @@
     "enzyme-adapter-react-16": "^1.6.0",
     "enzyme-to-json": "^3.3.4",
     "jest": "^23.6.0",
+    "nodemon": "^1.18.4",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.5.2"
   }
