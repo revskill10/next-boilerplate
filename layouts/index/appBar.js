@@ -11,9 +11,11 @@ import { connect } from 'react-redux'
 //import {SignalWifiStatusbar4Bar, SignalWifiStatusbar1Bar} from 'styled-icons/material'
 
 import {SignalWifiStatusbar4Bar} from 'styled-icons/material/SignalWifiStatusbar4Bar.cjs'
-import {SignalWifiStatusbar1Bar} from 'styled-icons/material/SignalWifiStatusbar1Bar.cjs'
+import {SignalWifiStatusbarConnectedNoInternet1} from 'styled-icons/material/SignalWifiStatusbarConnectedNoInternet1.cjs'
 
-const Component = ({classes, t, socket}) => 
+import { socketConnectedSelector, socketDisconnectedSelector } from '../../selectors'
+
+const Component = ({classes, t, isConnected, isDisconnected}) => 
   <AppBar position="static" color="default" className={classes.appBar}>
     <Toolbar>
       <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
@@ -28,8 +30,8 @@ const Component = ({classes, t, socket}) =>
       </Typography>
 
       <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
-        {socket.status === 'Connected' && <SignalWifiStatusbar4Bar size='40' />}
-        {socket.status !== 'Connected' && <SignalWifiStatusbar1Bar size='40' />}
+        {isConnected && <SignalWifiStatusbar4Bar size='40' />}
+        {isDisconnected && <SignalWifiStatusbarConnectedNoInternet1 size='40' />}
       </Typography>
 
       <Button>
@@ -66,9 +68,12 @@ const Component = ({classes, t, socket}) =>
     </Toolbar>
   </AppBar>
 
-function mapStateToProps (state) {
-  const {socket} = state
-  return {socket}
+
+const mapStateToProps = (state) => {
+  return {
+    isConnected: socketConnectedSelector(state),
+    isDisconnected: socketDisconnectedSelector(state)
+  }
 }
 
 export default connect(mapStateToProps)(

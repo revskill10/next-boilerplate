@@ -11,3 +11,18 @@ subscription OrganizationListSubscription {
     id
   }
 }
+
+query GetOrgInfo($domain:String!){
+  organizations(where:{domain:{_eq:$domain}}){
+    id
+    domain
+    api_domain
+    organization_name
+    modules{
+      module{
+        id
+        module_name
+      }      
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
 import { Provider as ReduxProvider } from 'react-redux'
+import { updateDomain } from '../actions'
 
 const TIMEOUT = 400
 
@@ -18,8 +19,10 @@ class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
     let pageProps = {}
 
-    if (ctx.req) {
-      const lng = ctx.req.query.lng
+    const { req } = ctx
+
+    if (req) {
+      const lng = req.query.lng
       if (lng !== 'en') {
         i18n.changeLanguage(lng)
       }
@@ -29,6 +32,8 @@ class MyApp extends App {
       }
 
       const { store } = ctx
+
+      store.dispatch(updateDomain(req.get('host')), true)
 
       return { pageProps, store }
     } 

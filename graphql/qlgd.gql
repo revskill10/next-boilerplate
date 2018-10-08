@@ -1,0 +1,30 @@
+subscription SubscribeKhoas {
+  khoas{
+    id
+    ten_khoa
+    giang_vien_id
+  }
+}
+
+query GetKhoas {
+  khoas{
+    id
+    ten_khoa
+    giang_vien_id
+  }
+}
+
+query GetSubject {
+  subjects:v_get_all_subject_class{
+    tuan
+    lop_mon_hoc_id
+    ma_lop
+    ma_mon_hoc
+    ten_mon_hoc
+    lop_mon_hoc{
+      state
+      created_at
+      updated_at
+    }
+  }
+}

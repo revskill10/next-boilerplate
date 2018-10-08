@@ -1,18 +1,10 @@
 import React from 'react'
-import cookie from 'cookie'
 import PropTypes from 'prop-types'
 import { getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
 import initApollo from '../shared/initApollo'
-import { inspect } from 'util'
-import { makeStore } from '../data/store'
-
-function parseCookies (req, options = {}) {
-  return cookie.parse(
-    req ? req.headers.cookie || '' : document.cookie,
-    options
-  )
-}
+import { makeStore, exampleInitialState } from '../data/store'
+import { getToken } from '../shared/getToken'
 
 export default App => {
   return class WithData extends React.Component {
@@ -24,12 +16,15 @@ export default App => {
     static async getInitialProps (ctx) {
       const { Component, router, ctx: { req, res } } = ctx
 
-      const store = makeStore()
+      
 
-      const token = parseCookies(req).token
+      const token = getToken(req)
+
       const apollo = initApollo({}, {
         getToken: () => token,
       })
+
+      const store = makeStore(exampleInitialState, apollo)
 
       ctx.ctx.apolloClient = apollo
 
@@ -87,7 +82,7 @@ export default App => {
     constructor (props) {
       super(props)
 
-      this.reduxStore = makeStore(props.reduxState);
+      this.reduxStore = makeStore(props.reduxState, null);
       
       this.apolloClient = initApollo(props.apolloState, {
         getToken: () => props.token,
