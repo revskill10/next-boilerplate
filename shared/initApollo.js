@@ -63,19 +63,27 @@ function create (initialState, { getToken, store }) {
 
     wsClient.maxConnectTimeGenerator.duration = () => wsClient.maxConnectTimeGenerator.max
     wsClient.onDisconnected(() => { 
-      store.dispatch(updateSocketStatus('Disconnected'))
+      if (store && typeof(store.dispatch) === 'function') {
+        store.dispatch(updateSocketStatus('Disconnected'))
+      }
     });
 
     wsClient.onConnecting(() => { 
-      store.dispatch(updateSocketStatus('Connecting'))
+      if (store && typeof(store.dispatch) === 'function') {
+        store.dispatch(updateSocketStatus('Connecting'))
+      }
     });
 
     wsClient.onReconnecting(() => { 
-      store.dispatch(updateSocketStatus('Reconnecting'))
+      if (store && typeof(store.dispatch) === 'function') {
+        store.dispatch(updateSocketStatus('Reconnecting'))
+      }
     });
 
     wsClient.onConnected(() => { 
-      store.dispatch(updateSocketStatus('Connected'))
+      if (store && typeof(store.dispatch) === 'function') {
+        store.dispatch(updateSocketStatus('Connected'))
+      }
     });
 
     const wsLink = new WebSocketLink(wsClient)

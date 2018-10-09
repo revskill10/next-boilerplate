@@ -13,10 +13,6 @@ const options = {
   filterType: 'dropdown',
   responsive: 'stacked',
   rowsPerPage: 10,
-  downloadOptions: {
-      filename: 'excel-format.csv',
-      separator: ';',
-  },
   onRowsSelect: (rowsSelected, allRows) => {
     console.log(rowsSelected, allRows);
   },

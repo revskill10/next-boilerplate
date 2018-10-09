@@ -42,7 +42,6 @@ export default App => {
       }
 
       if (!process.browser) {
-
         const domain = req.get('host')
 
         const vars = {
@@ -82,11 +81,10 @@ export default App => {
           ...appProps,
           apolloState,
           token,
-          store,
+          reduxState: store.getState(),
           isServer: true,
         }
-      }
-
+      } 
       // Extract query data from the Apollo's store
       const apolloState = apollo.cache.extract()
 
@@ -102,24 +100,12 @@ export default App => {
     constructor (props) {
       super(props)
 
-      if (props.isServer) {
-        
-        this.apolloClient = initApollo(props.apolloState, {
-          getToken: () => props.token,
-          store: props.store,
-        })
-
-        this.reduxStore = makeStore(props.reduxState, this.apolloClient);
-
-      } else {
-
-        this.reduxStore = makeStore(props.reduxState, null);
-      
-        this.apolloClient = initApollo(props.apolloState, {
-          getToken: () => props.token,
-          store: this.reduxStore,
-        })
-      }
+      this.reduxStore = makeStore(props.reduxState, null);
+    
+      this.apolloClient = initApollo(props.apolloState, {
+        getToken: () => props.token,
+        store: this.reduxStore,
+      })
     }
 
     render () {
