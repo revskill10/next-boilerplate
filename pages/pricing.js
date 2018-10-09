@@ -16,10 +16,10 @@ import { connect } from 'react-redux'
 const Page = ({classes, tiers}) =>
   <Layout>
     <div className={classes.heroContent}>
-      <Typography variant="display3" align="center" color="textPrimary" gutterBottom>
+      <Typography variant="h2" align="center" color="textPrimary" gutterBottom>
         Pricing
       </Typography>
-      <Typography variant="title" align="center" color="textSecondary" component="p">
+      <Typography variant="h6" align="center" color="textSecondary" component="p">
         Quickly build an effective pricing table for your potential customers with this layout.
         It&apos;s built with default Material-UI components with little customization.
       </Typography>
@@ -39,15 +39,15 @@ const Page = ({classes, tiers}) =>
             />
             <CardContent>
               <div className={classes.cardPricing}>
-                <Typography component="h2" variant="display2" color="textPrimary">
+                <Typography component="h2" variant="h3" color="textPrimary">
                   ${tier.price}
                 </Typography>
-                <Typography variant="title" color="textSecondary">
+                <Typography variant="h6" color="textSecondary">
                   /mo
                 </Typography>
               </div>
               {tier.description.map(line => (
-                <Typography variant="subheading" align="center" key={line}>
+                <Typography variant="subtitle1" align="center" key={line}>
                   {line}
                 </Typography>
               ))}

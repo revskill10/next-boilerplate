@@ -12,18 +12,18 @@ const Component = ({classes, t, footers}) =>
   <footer className={classNames(classes.footer, classes.layout)}>
     <Grid container spacing={32} justify="space-evenly">
       <Grid item xs key={`choose_language`}>
-        <Typography variant="title" color="textPrimary" gutterBottom>
+        <Typography variant="h6" color="textPrimary" gutterBottom>
           {t('choose_language')}
         </Typography>      
         <LanguageSwitch />
       </Grid>
       {footers.map(footer => (
         <Grid item xs key={footer.title}>
-          <Typography variant="title" color="textPrimary" gutterBottom>
+          <Typography variant="h6" color="textPrimary" gutterBottom>
             {footer.title}
           </Typography>
           {footer.description.map(item => (
-            <Typography key={item} variant="subheading" color="textSecondary">
+            <Typography key={item} variant="subtitle1" color="textSecondary">
               {item}
             </Typography>
           ))}

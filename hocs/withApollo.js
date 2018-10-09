@@ -5,6 +5,7 @@ import Head from 'next/head'
 import initApollo from '../shared/initApollo'
 import { makeStore, exampleInitialState } from '../data/store'
 import { getToken } from '../shared/getToken'
+import { updateDomain } from '../actions'
 
 export default App => {
   return class WithData extends React.Component {
@@ -15,8 +16,6 @@ export default App => {
 
     static async getInitialProps (ctx) {
       const { Component, router, ctx: { req, res } } = ctx
-
-      
 
       const token = getToken(req)
 
@@ -43,6 +42,16 @@ export default App => {
       }
 
       if (!process.browser) {
+
+        const domain = req.get('host')
+
+        const vars = {
+          domain,
+          isServer: true,
+          req
+        }
+
+        store.dispatch(updateDomain(vars))
         // Run all graphql queries in the component tree
         // and extract the resulting data
         try {
@@ -66,6 +75,16 @@ export default App => {
         // getDataFromTree does not call componentWillUnmount
         // head side effect therefore need to be cleared manually
         Head.rewind()
+
+        const apolloState = apollo.cache.extract()
+
+        return {
+          ...appProps,
+          apolloState,
+          token,
+          store,
+          isServer: true,
+        }
       }
 
       // Extract query data from the Apollo's store
@@ -76,18 +95,31 @@ export default App => {
         apolloState,
         token,
         reduxState: store.getState(),
+        isServer: false,
       }
     }
 
     constructor (props) {
       super(props)
 
-      this.reduxStore = makeStore(props.reduxState, null);
+      if (props.isServer) {
+        
+        this.apolloClient = initApollo(props.apolloState, {
+          getToken: () => props.token,
+          store: props.store,
+        })
+
+        this.reduxStore = makeStore(props.reduxState, this.apolloClient);
+
+      } else {
+
+        this.reduxStore = makeStore(props.reduxState, null);
       
-      this.apolloClient = initApollo(props.apolloState, {
-        getToken: () => props.token,
-        store: this.reduxStore,
-      })
+        this.apolloClient = initApollo(props.apolloState, {
+          getToken: () => props.token,
+          store: this.reduxStore,
+        })
+      }
     }
 
     render () {

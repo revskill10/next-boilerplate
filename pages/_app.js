@@ -10,7 +10,7 @@ import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
 import { Provider as ReduxProvider } from 'react-redux'
-import { updateDomain } from '../actions'
+
 
 const TIMEOUT = 400
 
@@ -30,12 +30,8 @@ class MyApp extends App {
       if (Component.getInitialProps) {
         pageProps = await Component.getInitialProps(ctx)
       }
-
-      const { store } = ctx
-
-      store.dispatch(updateDomain(req.get('host')), true)
-
-      return { pageProps, store }
+      
+      return { pageProps }
     } 
 
     if (Component.getInitialProps) {

@@ -18,7 +18,7 @@ import { socketConnectedSelector, socketDisconnectedSelector } from '../../selec
 const Component = ({classes, t, isConnected, isDisconnected}) => 
   <AppBar position="static" color="default" className={classes.appBar}>
     <Toolbar>
-      <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
+      <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
         <Link href={`/`}>
           <a style={{
             textDecoration: 'none',
@@ -29,7 +29,7 @@ const Component = ({classes, t, isConnected, isDisconnected}) =>
         </Link>
       </Typography>
 
-      <Typography variant="title" color="inherit" noWrap className={classes.toolbarTitle}>
+      <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
         {isConnected && <SignalWifiStatusbar4Bar size='40' />}
         {isDisconnected && <SignalWifiStatusbarConnectedNoInternet1 size='40' />}
       </Typography>

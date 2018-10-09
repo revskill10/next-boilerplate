@@ -1,29 +1,26 @@
 module.exports = `
 query UserInfo($email:String!,$domain:String!){
-  me:user_information(where:{
+  me:user_info(where:{
     email:{_eq:$email},
     domain:{_eq:$domain}
   }){
     user_id
-    user_info{
+    role_names
+    organization_id
+    user{
       displayName
       email
+      gender
       first_name
       last_name
       image_url
-      gender      
     }
-    roles:role_names
-  	organization_information:organization{
-      id
-      organization_name    
-      modules{
-        id
-        module{
-          module_name
-          url
-        }
-      }
-    }    
+    organization{
+      organization_name
+    }
+    module_roles{
+      module_id
+      role_names
+    }
   }
 }`

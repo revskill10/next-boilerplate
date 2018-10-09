@@ -9,8 +9,8 @@ import { onError } from 'apollo-link-error';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 import { updateSocketStatus } from '../actions'
 
-const GRAPHQL_URL=`https://api.ihs.edu.vn/`
-const WS_URL=`wss://api.ihs.edu.vn/`
+const GRAPHQL_URL=`https://api-ihs.herokuapp.com/`
+const WS_URL=`wss://api-ihs.herokuapp.com/`
 
 let apolloClient = null
 
@@ -24,7 +24,6 @@ function create (initialState, { getToken, store }) {
 
   const httpLink = createHttpLink({
     uri: GRAPHQL_URL,
-    credentials: 'same-origin'
   })
 
   const contextLink = setContext(
