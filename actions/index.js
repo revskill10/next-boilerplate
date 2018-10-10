@@ -1,27 +1,15 @@
 import { types } from './types'
-import { getToken } from '../shared/getToken'
-import gql from 'graphql-tag';
-
+import { QueryKhoas as query } from '../graphql/modules/directory/khoas.gql'
 
 export const updateSocketStatus = (status) =>
   ({ type: types.UPDATE_SOCKET_STATUS, status, })
 
-export const updateDomain = ({domain, isServer, req}) => (dispatch, getState, { apolloClient }) => {
-  if (isServer) {
-    /*
-    apolloClient.query({
-      query: gql`
-        query {
-          khoas{
-            id
-            ten_khoa
-          }
-        }
-      `,
-    })
-    .then(data => console.log(data))
-    .catch(error => console.error(error))
-    */
-    dispatch({ type: types.UPDATE_DOMAIN, domain, })
-  }
+export const updateDomain = (req) => async (dispatch, getState, { apolloClient }) => {
+  const domain = req.get('host')
+
+  const data = await apolloClient.query({
+    query,
+  })
+  dispatch({ type: types.UPDATE_DOMAIN, domain, khoas: data.data.khoas})
+
 }

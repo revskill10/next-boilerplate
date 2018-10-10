@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { getDataFromTree } from 'react-apollo'
 import Head from 'next/head'
 import initApollo from '../shared/initApollo'
-import { makeStore, exampleInitialState } from '../data/store'
+import { makeStore } from '../data/store'
 import { getToken } from '../shared/getToken'
-import { updateDomain } from '../actions'
+import { inspect } from 'util'
+import { persistStore } from 'redux-persist';
 
 export default App => {
   return class WithData extends React.Component {
@@ -23,7 +24,7 @@ export default App => {
         getToken: () => token,
       })
 
-      const store = makeStore(exampleInitialState, apollo)
+      const store = makeStore(apollo)
 
       ctx.ctx.apolloClient = apollo
 
@@ -42,15 +43,8 @@ export default App => {
       }
 
       if (!process.browser) {
-        const domain = req.get('host')
-
-        const vars = {
-          domain,
-          isServer: true,
-          req
-        }
-
-        store.dispatch(updateDomain(vars))
+        
+        
         // Run all graphql queries in the component tree
         // and extract the resulting data
         try {
@@ -99,13 +93,24 @@ export default App => {
 
     constructor (props) {
       super(props)
+      console.log(inspect(props))
 
-      this.reduxStore = makeStore(props.reduxState, null);
-    
-      this.apolloClient = initApollo(props.apolloState, {
-        getToken: () => props.token,
-        store: this.reduxStore,
-      })
+      if (process.browser) {
+       
+        this.reduxStore = makeStore(null, props.reduxState);
+
+        this.apolloClient = initApollo(props.apolloState, {
+          getToken: () => props.token,
+          store: this.reduxStore,
+        })
+      } else {            
+        this.apolloClient = initApollo(props.apolloState, {
+          getToken: () => props.token,
+        })
+
+        this.reduxStore = makeStore(this.apolloClient, props.reduxState);
+      }
+      this.persistor = persistStore(this.reduxStore);
     }
 
     render () {

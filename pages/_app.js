@@ -10,7 +10,7 @@ import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
 import { Provider as ReduxProvider } from 'react-redux'
-import { persistStore } from 'redux-persist';
+import { updateDomain } from '../actions'
 
 const TIMEOUT = 400
 
@@ -27,9 +27,15 @@ class MyApp extends App {
         i18n.changeLanguage(lng)
       }
 
+      const { store } = ctx
+
+      await store.dispatch(updateDomain(req))
+
       if (Component.getInitialProps) {
         pageProps = await Component.getInitialProps(ctx)
       }
+
+      
 
       return { pageProps }
     } 
@@ -43,8 +49,8 @@ class MyApp extends App {
 
   constructor(props) {
     super(props);
-    this.pageContext = getPageContext();
-    this.persistor = persistStore(props.store);
+    this.pageContext = getPageContext();    
+    
   }
 
   componentDidMount() {
