@@ -17,18 +17,6 @@ const styles = theme => ({
 });
 
 class Index extends React.Component {
-  static async getInitialProps({req}) {
-    if (req) {
-      // Runs only in the server
-      const faker = require('faker')
-      const name = faker.name.findName()
-      return { name }
-    }
-  
-    // Runs only in the client
-    return { name: 'Arunoda' }
-  }
-
   state = {
     open: false,
   };
@@ -50,20 +38,20 @@ class Index extends React.Component {
     const { open } = this.state;
 
     return (
-      <NoSSR onSSR={<Loading />}>
         <Layout>
-          <div className={classes.root}>
-          <Grid container spacing={24}>
-            <Grid item xs={4}>
-              <PieChart />
-            </Grid>
-            <Grid item xs>
-              <Table />
-            </Grid>
-          </Grid>
-          </div>
+          <NoSSR onSSR={<Loading />}>
+            <div className={classes.root}>
+              <Grid container spacing={24}>
+                <Grid item xs={4}>
+                  <PieChart />
+                </Grid>
+                <Grid item xs>
+                  <Table />
+                </Grid>
+              </Grid>
+            </div>
+          </NoSSR>
         </Layout>
-      </NoSSR>
     );
   }
 }

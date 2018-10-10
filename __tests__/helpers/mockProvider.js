@@ -1,6 +1,6 @@
 import { makeStore } from './mockStore/store'
 import { Provider as ReduxProvider } from 'react-redux'
-import initApollo from '../shared/initApollo'
+import initApollo from '../../shared/initApollo'
 import { ApolloProvider } from 'react-apollo'
 
 const MockProvider = ({children}) => {

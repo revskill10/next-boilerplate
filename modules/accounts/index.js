@@ -1,4 +1,4 @@
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from "../../components/mui-datatables";
 
 const columns = ["Name", "Company", "City", "State"];
 

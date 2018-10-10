@@ -1,4 +1,4 @@
-import MUIDataTable from "mui-datatables";
+import MUIDataTable from "../../components/mui-datatables";
 import LiveComponent from '../../hocs/liveComponent'
 import {QueryAllLessonClass as query, SubscribeAllLessonClass as subscription} from '../../graphql//modules/qlgd/v_get_all_lesson_class.gql'
 import convertDataToArray from '../../shared/convertDataToArray'

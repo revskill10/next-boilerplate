@@ -20,17 +20,6 @@ const styles = theme => ({
 });
 
 class Index extends React.Component {
-  static async getInitialProps({req}) {
-    if (req) {
-      // Runs only in the server
-      const faker = require('faker')
-      const name = faker.name.findName()
-      return { name }
-    }
-  
-    // Runs only in the client
-    return { name: 'Arunoda' }
-  }
 
   state = {
     open: false,

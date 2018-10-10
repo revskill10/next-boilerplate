@@ -41,7 +41,7 @@ class NestedList extends React.Component {
         <List
           component="nav"
           subheader={<ListSubheader component="div">
-            {"Menu"}
+            Reports
           </ListSubheader>}
         >
           <ListItem button>

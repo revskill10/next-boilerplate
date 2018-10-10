@@ -36,7 +36,7 @@ const Component = ({classes, t, isConnected, isDisconnected}) =>
 
       <Button>
         <Link href={`/dashboard`}>
-          <a className={classes.appBarLink}>
+          <a href={`/dashboard`} className={classes.appBarLink}>
             {t('dashboard_menu')}
           </a>
         </Link>

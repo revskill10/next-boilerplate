@@ -2,7 +2,9 @@
 
 //import { shallow } from 'enzyme'
 import App from '../../pages/dashboard.js'
-import mockPage from '../../test/mockPage'
+import mockPage from '../helpers/mockPage'
+import { createRender } from '@material-ui/core/test-utils';
+import toJson from 'enzyme-to-json';
 /*
 describe('With Enzyme', () => {
   it('App shows "Hello world!"', () => {
@@ -13,8 +15,14 @@ describe('With Enzyme', () => {
 })
 */
 describe('With Snapshot Testing', () => {
-  it('App shows "Dashboard"', () => {
-    const component = mockPage(App)
-    expect(component).toMatchSnapshot()
+  let render;
+
+  beforeEach(() => {
+    render = createRender();
+  });
+
+  it('App shows "About"', () => {
+    const component = mockPage(render)(App)
+    expect(toJson(component)).toMatchSnapshot()
   })
 })
