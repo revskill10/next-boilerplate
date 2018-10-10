@@ -14,7 +14,7 @@ const textLabels = {
   },
   toolbar: {
     search: "Search",
-    downloadCsv: "Download CSV",
+    downloadCsv: "Export To Excel",
     print: "Print",
     viewColumns: "View Columns",
     filterTable: "Filter Table",

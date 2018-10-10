@@ -14,6 +14,8 @@ import ViewColumnIcon from "@material-ui/icons/ViewColumn";
 import FilterIcon from "@material-ui/icons/FilterList";
 import ReactToPrint from "react-to-print";
 import styled from "./styled";
+import XLSX from "xlsx";
+
 
 export const defaultToolbarStyles = (theme, props) => ({
   root: {},
@@ -82,6 +84,17 @@ class MUIDataTableToolbar extends React.Component {
     iconActive: null,
     showSearch: false,
   };
+
+  handleExcelDownload = () => {
+    const { data, columns } = this.props;
+
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet(
+      [columns.map(r => r.name)].concat(data.map(r => r.data))
+    );
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Tabela Exportada");
+    XLSX.writeFile(workbook, "TabelaExportada.xls", { compression: true });
+  }
 
   handleCSVDownload = () => {
     const { data, columns, options } = this.props;
@@ -197,7 +210,7 @@ class MUIDataTableToolbar extends React.Component {
           )}
           {options.download ? (
             <Tooltip title={downloadCsv}>
-              <IconButton aria-label={downloadCsv} classes={{ root: classes.icon }} onClick={this.handleCSVDownload}>
+              <IconButton aria-label={downloadCsv} classes={{ root: classes.icon }} onClick={this.handleExcelDownload}>
                 <DownloadIcon />
               </IconButton>
             </Tooltip>
