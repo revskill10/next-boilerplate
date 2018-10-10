@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 import { ServerStyleSheet } from 'styled-components'
-
+import { PersistGate } from 'redux-persist/integration/react';
 class MyDocument extends Document {
   render() {
     const { pageContext } = this.props;
@@ -75,12 +75,19 @@ MyDocument.getInitialProps = ctx => {
   // 4. page.render
   // Render app and page and get the context of the page with collected side effects.
   let pageContext;
+  let persistor;
   const sheet = new ServerStyleSheet()
 
   const page = ctx.renderPage(Component => {
     const WrappedComponent = props => {
       pageContext = props.pageContext;
-      return sheet.collectStyles(<Component {...props} />);
+      persistor = props.persistor;
+      
+      return sheet.collectStyles(
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...props} />
+        </PersistGate>
+      );
     };
 
     WrappedComponent.propTypes = {

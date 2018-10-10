@@ -10,7 +10,7 @@ import { PageTransition } from 'next-page-transitions'
 import Loader from '../components/loader'
 import i18n from '../shared/i18n'
 import { Provider as ReduxProvider } from 'react-redux'
-
+import { persistStore } from 'redux-persist';
 
 const TIMEOUT = 400
 
@@ -30,7 +30,7 @@ class MyApp extends App {
       if (Component.getInitialProps) {
         pageProps = await Component.getInitialProps(ctx)
       }
-      
+
       return { pageProps }
     } 
 
@@ -44,6 +44,7 @@ class MyApp extends App {
   constructor(props) {
     super(props);
     this.pageContext = getPageContext();
+    this.persistor = persistStore(props.store);
   }
 
   componentDidMount() {
@@ -84,8 +85,8 @@ class MyApp extends App {
                   >
                     <Fragment>
                       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                      <CssBaseline />
-                      <Component pageContext={this.pageContext} {...pageProps} />
+                      <CssBaseline />                      
+                      <Component pageContext={this.pageContext} {...pageProps} persistor={this.persistor} />
                     </Fragment>
                   </MuiThemeProvider>
                 </JssProvider>

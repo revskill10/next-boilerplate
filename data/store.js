@@ -7,6 +7,8 @@ import demoData, { reducer as demoChartReducer } from './chart'
 import socket, { reducer as socketReducer } from './socket'
 import organization, { reducer as organizationReducer } from './organization'
 import { combineReducers } from 'redux'
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage'
 
 export const exampleInitialState = {
   footers,
@@ -24,9 +26,16 @@ const reducer = combineReducers({
   organization: organizationReducer,
 })
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+
 export const makeStore = (initialState = exampleInitialState, apolloClient) => {
   return createStore(
-    reducer, 
+    persistedReducer, 
     initialState, 
     composeWithDevTools(
       applyMiddleware(
