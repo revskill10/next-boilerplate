@@ -9,8 +9,10 @@ import { onError } from 'apollo-link-error';
 import {SubscriptionClient} from 'subscriptions-transport-ws';
 import { updateSocketStatus } from '../actions'
 
-const GRAPHQL_URL=`https://api-ihs.herokuapp.com/`
-const WS_URL=`wss://api-ihs.herokuapp.com/`
+
+const GRAPHQL_URL=`https://api-fhleomnvin.now.sh`
+const WS_URL=`wss://api-fhleomnvin.now.sh`
+
 
 let apolloClient = null
 
